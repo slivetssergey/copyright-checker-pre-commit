@@ -1,0 +1,5 @@
+- id: copyright
+  name: copyright
+  description: ""
+  entry: copyright-check
+  language: python
