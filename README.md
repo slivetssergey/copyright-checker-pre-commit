@@ -1,12 +1,17 @@
-# copyright-checker-pre-commit
+# pre-commit-hooks
 
+## Requirements
+
+Install and configure [pre-commt](https://pre-commit.com/#install).
+
+## Check commit message
+
+## Copyright checking
 
 This pre-commit hook serve checking copyright in files.
 Works with multiline copyright. Works with shebang and allow usage of python regular expressions.
 
-## Usage
-
-Install and configure [pre-commt](https://pre-commit.com/#install).
+### Usage
 
 Add copyright checker to `.pre-commit-config.yaml`
 

@@ -6,7 +6,11 @@ import re
 import sys
 from typing import List, Optional, Sequence
 
-from copyright_checker.exceptions import CopyrightCheckerException, CopyrightFileNotFoundException
+from scripts.copyright_checker.exceptions import (
+    CopyrightCheckerException,
+    CopyrightFileNotFoundException,
+)
+from scripts.utils import Level, print_message
 
 
 class CopyrightChecker:
@@ -37,13 +41,13 @@ class CopyrightChecker:
         is_valid = True
         for filename in self.filenames:
             if not self.check_file_copyright(filename):
-                print(f"File {filename} does not contain a valid copyright notice.")
+                mgs = f"File {filename} does not contain a valid copyright notice."
+                print_message(mgs, Level.ERROR)
                 is_valid = False
         return is_valid
 
 
-def check(args: Optional[Sequence[str]] = None) -> int:
-    # def check(args: Union[argparse.Namespace, Optional[Sequence[str]]] = None) -> int:
+def parse_args(args: Optional[Sequence[str]] = None) -> argparse.Namespace:
     parser = argparse.ArgumentParser()
     parser.add_argument(
         "filenames",
@@ -56,6 +60,11 @@ def check(args: Optional[Sequence[str]] = None) -> int:
         help="Path to file with copyright text",
     )
     arguments = parser.parse_args(args)
+    return arguments
+
+
+def check(args: Optional[Sequence[str]] = None) -> int:
+    arguments = parse_args(args)
     filenames = [pathlib.Path(file) for file in arguments.filenames]
     copyright_file = pathlib.Path(arguments.copyright)
     try:
@@ -65,7 +74,7 @@ def check(args: Optional[Sequence[str]] = None) -> int:
         ).check()
         return 0 if result else 1
     except CopyrightCheckerException as exc:
-        print(exc)
+        print_message(str(exc), Level.ERROR)
     return 1
 
 
