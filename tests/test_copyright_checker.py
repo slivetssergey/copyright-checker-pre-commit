@@ -2,8 +2,8 @@ import pathlib
 
 import pytest
 
-from copyright_checker.checker import CopyrightChecker
-from copyright_checker.exceptions import CopyrightFileNotFoundException
+from scripts.copyright_checker.checker import CopyrightChecker
+from scripts.copyright_checker.exceptions import CopyrightFileNotFoundException
 
 
 class TestCopyrightChecker:
