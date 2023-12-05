@@ -1,12 +1,14 @@
 - id: copyright
   name: copyright
-  description: ""
+  description: ''
   entry: copyright-check
   language: python
 - id: commit-message
   name: check commit message
-  description: ""
+  description: ''
   entry: commit-message-check
   language: python
-  args: [ --multiline ]
-  stages: [ commit-msg ]
+  args:
+    - '--multiline'
+  stages:
+    - commit-msg
